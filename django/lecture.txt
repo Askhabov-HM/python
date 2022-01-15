@@ -1,0 +1,10 @@
+_____1_____
+python -m venv venv - create virtual environment 'venv'(you can other name)
+after call '.\venv\Scripts\activate'
+
+pip install django
+django-admin - show django terminal commands
+
+django-admin startproject <project_name>
+cd mysite
+python manage.py runserver - initially start on the 8000 port but it can be changed
