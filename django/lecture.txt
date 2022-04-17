@@ -1,4 +1,4 @@
-_____1_____
+-----1-----
 python -m venv venv - create virtual environment 'venv'(you can other name)
 after call '.\venv\Scripts\activate'
 
@@ -8,3 +8,25 @@ django-admin - show django terminal commands
 django-admin startproject <project_name>
 cd mysite
 python manage.py runserver - initially start on the 8000 port but it can be changed
+
+-----2-----
+каждая отдельная функциональная часть это отдельное приложение
+
+1. cd mysite
+2. python manage.py startapp women - create separate application
+
+
+__init__.py - указывает на то что это проект некий пакет в питоне (если честно не понял)
+admin.py - админ панель сайта
+apps.py -  для конфигурирования текущего приложения
+models.py - для хранения моделей
+test.py - для тестов
+views.py - хранение представления текущего приложения
+
+чтобы связать views с неким url нужно: в mysite/urls.py в urlpatterns добавить маршрут используя path('pathName', handlerFunc)
+
+Чтобы вручную не писать кадждый url и представление к нему есть функция include
+которой передается путь к файлу где есть маршруты приложения.
+т.е path('fuckyou', include('women.urls')). Этот файл нужно создать самому.
+
+В файле urls приложения потрубется функция path и все представления из этого приложения, которые есть.
