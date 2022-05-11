@@ -13,8 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from cgitb import handler
 from django.contrib import admin
 from django.urls import path, include
+from man.views import pageNotFound
 
 from  women.views import index
 
@@ -23,3 +25,5 @@ urlpatterns = [
     path('man/', include('man.urls')),
     path('women/', include('women.urls')),
 ]
+
+handler404 = pageNotFound

@@ -1,4 +1,4 @@
------1-----
+--------------- 1 ---------------
 python -m venv venv - create virtual environment 'venv'(you can other name)
 after call '.\venv\Scripts\activate'
 
@@ -9,7 +9,8 @@ django-admin startproject <project_name>
 cd mysite
 python manage.py runserver - initially start on the 8000 port but it can be changed
 
------2-----
+--------------- 2 ---------------
+
 каждая отдельная функциональная часть это отдельное приложение
 
 1. cd mysite
@@ -30,3 +31,31 @@ views.py - хранение представления текущего прил
 т.е path('fuckyou', include('women.urls')). Этот файл нужно создать самому.
 
 В файле urls приложения потрубется функция path и все представления из этого приложения, которые есть.
+
+python manage.py runserver - запустить сервер
+
+--------------- 3 ---------------
+
+Можно добавлять параметры в запрос.
+path('url/<int:id>', func)
+path('url/<str:name>', func)
+где int, str - типы данных
+
+К параметрам url можно применять регулярные выражения с помощью re_path()
+
+В параметре request передаваемом внутрь views содержится словарь GET с параметрами в URL
+print(request.GET)
+print(request.POST) / here need html form ( author promise explain later )
+
+Чтобы посмотреть как выглядит ошибка 404 со стороны клиента нужно:
+1. in mysite in settings.py turn Debug to False
+2. add localHost path to the ALLOWED_HOSTS array like a str: '127.0.0.1/'
+
+Чтобы создать указать свою страницу 404 нужно:
+1. mysite/urls добавить переменную handler404 = (функия обработчик, которая создана в views)
+                                                   / т.е так можно переопределить обработчик
+2. У функции 404 два параметра: request and exception
+3. Чтобы статус возвращаемой страницы был 404 есть функция HttpResponseNotFound('<h1>page not found</h1>')
+
+Для URL можно указать name. Что очень удобно. Если поменяют URL, то мы всеравно будет ссылаться на нужную страницу
+path('', index, name='home') 
